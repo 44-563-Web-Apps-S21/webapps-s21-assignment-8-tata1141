@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            fetch demo
+        </title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>
+        Chandra Bhanu Tata Computes
+        </h1>
+        <input type="number" id="first_var" name="first_var">
+        <input type="number" id="second_var" name="second_var">
+        <button type="button" id="tap" onclick="remotecompute()">Remote Compute</button>
+        <div id="result">Result</div>
+
+    </body>
+
+    <script>
+    function remotecompute() {
+        var firstVar = document.getElementById("first_var").value;
+        var secondVar = document.getElementById("second_var").value;
+        console.log(firstVar)
+        fetch(`http://127.0.0.1:3001/?x=${firstVar}&y=${secondVar}`).then( (resp) => 
+        { return resp.text()}) .then (text =>{console.log(text);
+
+
+        document.getElementById("result").innerHTML = text;
+        }).catch(error =>{
+        document.getElementById("result").innerHTML=error;
+        })
+        }
+
+
+    
+
+</script>
+</html>
